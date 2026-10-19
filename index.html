@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de asado: cuánta carne comprar por persona (2026)</title>
+<meta name="description" content="Calculá cuánta carne, chorizos, pan, carbón y bebida necesitás para tu asado según cuántos adultos y chicos sean. Gratis y sin registro.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de asado: cuánta carne comprar por persona">
+<meta property="og:description" content="Carne, achuras, pan, carbón y bebida para tu asado. Gratis y sin registro.">
+<style>
+:root{
+  --bg:#f2f5f1; --card:#ffffff; --ink:#1c2420; --muted:#5d6a63; --line:#d9e0da;
+  --green:#1d4d3a; --green-soft:#e3eee7; --red:#b8321c; --red-soft:#fbe9e5;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#131a16; --card:#1b2420; --ink:#eef3ef; --muted:#9fb0a6; --line:#2b3831;
+    --green:#6fcf9f; --green-soft:#1f3329; --red:#ff7a5f; --red-soft:#3a1f1a;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 56px}
+.brand{font-size:14px;color:var(--muted);margin:0 0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,7vw,44px);line-height:1.08;margin:0 0 10px;letter-spacing:-.01em}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:24px;line-height:1.2;margin:34px 0 10px}
+p{margin:0 0 12px}
+.lead{color:var(--muted);max-width:60ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:480px){.row{grid-template-columns:1fr}}
+label,.lab{display:block;font-weight:600;margin-bottom:6px}
+.hint{font-size:14px;color:var(--muted);margin-top:4px}
+.stepper{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg)}
+.stepper button{width:48px;border:0;background:var(--green-soft);color:var(--green);font-size:24px;font-weight:700;cursor:pointer}
+.stepper input{flex:1;min-width:0;text-align:center;border:0;background:transparent;color:var(--ink);font:inherit;font-size:20px;font-weight:700;padding:10px 0}
+select,input[type=number].plain{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+.checks{display:grid;gap:10px;margin-top:16px}
+.checks label{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin:0;cursor:pointer}
+.checks input{width:20px;height:20px;margin-top:3px;accent-color:var(--green)}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.total{background:var(--red-soft);border:1px solid var(--red);border-radius:14px;padding:18px;margin-top:18px}
+.total .big{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,11vw,60px);line-height:1;font-weight:700;color:var(--red)}
+.total .sub{margin:6px 0 0;color:var(--ink)}
+table{width:100%;border-collapse:collapse;margin-top:6px}
+th,td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:14px}
+td:last-child,th:last-child{text-align:right;white-space:nowrap}
+td small{display:block;color:var(--muted);font-size:13px}
+tr:last-child td{border-bottom:0}
+.share{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{display:inline-block;border:0;border-radius:10px;padding:13px 18px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;text-align:center}
+.btn.wsp{background:#1fa855;color:#fff}
+.btn.alt{background:var(--green-soft);color:var(--green)}
+.empty{color:var(--muted);padding:6px 0}
+.don{border-color:var(--green)}
+.don h2{margin-top:0}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+@media (max-width:560px){.tiers{grid-template-columns:1fr}}
+.tier{position:relative;display:block;text-decoration:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 12px;text-align:center}
+.tier b{display:block;font-size:17px}
+.tier span{display:block;font-size:20px;font-weight:700;color:var(--green);margin-top:2px}
+.tier.top{border:2px solid var(--green)}
+.tier em{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--green);color:var(--card);font-style:normal;font-size:12px;font-weight:700;padding:2px 10px;border-radius:99px;white-space:nowrap}
+.tier:hover{background:var(--green-soft)}
+.faq p b{display:block;margin-top:14px}
+footer{margin-top:30px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="brand">Calculadoras argentinas</p>
+  <h1>Calculadora de asado</h1>
+  <p class="lead">Decinos cuántos van a comer y te armamos la lista: carne, achuras, chorizos, pan, carbón y bebida. Después la mandás por WhatsApp al grupo.</p>
+
+  <section class="card" aria-label="Datos del asado">
+    <div class="row">
+      <div>
+        <span class="lab" id="la">Adultos</span>
+        <div class="stepper">
+          <button type="button" data-t="adultos" data-d="-1" aria-label="Menos adultos">−</button>
+          <input id="adultos" type="number" inputmode="numeric" min="0" max="500" value="8" aria-labelledby="la">
+          <button type="button" data-t="adultos" data-d="1" aria-label="Más adultos">+</button>
+        </div>
+      </div>
+      <div>
+        <span class="lab" id="ln">Chicos</span>
+        <div class="stepper">
+          <button type="button" data-t="ninos" data-d="-1" aria-label="Menos chicos">−</button>
+          <input id="ninos" type="number" inputmode="numeric" min="0" max="500" value="2" aria-labelledby="ln">
+          <button type="button" data-t="ninos" data-d="1" aria-label="Más chicos">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:16px">
+      <div>
+        <label for="apetito">¿Cómo comen?</label>
+        <select id="apetito">
+          <option value="400">Liviano (400 g por adulto)</option>
+          <option value="500" selected>Normal (500 g por adulto)</option>
+          <option value="650">Parrillero (650 g por adulto)</option>
+        </select>
+        <p class="hint">Es carne cruda con hueso, antes de las otras opciones.</p>
+      </div>
+      <div>
+        <label for="precio">Precio de la carne por kg ($)</label>
+        <input id="precio" class="plain" type="number" inputmode="numeric" min="0" placeholder="Opcional">
+        <p class="hint">Si lo cargás, calculamos el costo y cuánto sale por persona.</p>
+      </div>
+    </div>
+
+    <div class="checks">
+      <label><input id="emb" type="checkbox" checked><span>Incluir chorizo y morcilla</span></label>
+      <label><input id="ach" type="checkbox"><span>Incluir achuras (chinchulines, mollejas, riñón)</span></label>
+    </div>
+  </section>
+
+  <section class="total" aria-live="polite">
+    <div id="big" class="big">—</div>
+    <p id="sub" class="sub"></p>
+  </section>
+
+  <section class="card">
+    <h2 style="margin-top:0">Tu lista de compras</h2>
+    <div id="lista"><p class="empty">Cargá al menos una persona para ver la lista.</p></div>
+    <div class="share">
+      <a id="wsp" class="btn wsp" href="#" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+      <button id="copiar" class="btn alt" type="button">Copiar lista</button>
+    </div>
+  </section>
+
+  <section class="card don">
+    <h2>Este cálculo es gratis. ¿Nos invitás un café?</h2>
+    <p>Mantener las calculadoras al día lleva muchas horas por mes. Con tu aporte seguimos siendo gratis y sin paywall.</p>
+    <div class="tiers">
+      <a class="tier" href="https://mpago.li/13ZnUsm" target="_blank" rel="noopener">☕ <b>Un café</b><span>$3.000</span></a>
+      <a class="tier top" href="https://mpago.li/1pMdWqL" target="_blank" rel="noopener"><em>Más elegido</em>🍕 <b>Una pizza</b><span>$7.000</span></a>
+      <a class="tier" href="https://mpago.li/1kNpAxM" target="_blank" rel="noopener">💪 <b>Bancanos un mes</b><span>$15.000</span></a>
+    </div>
+    <p class="hint" style="margin:0">Pagás con tarjeta, transferencia o dinero en cuenta de Mercado Pago.</p>
+  </section>
+
+  <h2>Cuánta carne se calcula por persona</h2>
+  <p>La regla clásica argentina es 500 gramos de carne con hueso por adulto y la mitad para los chicos. Si sumás chorizo, morcilla o achuras, se come menos carne, así que la calculadora descuenta 80 g por adulto por los embutidos y 50 g por las achuras. Las achuras se cuentan aparte, a 100 g por adulto.</p>
+  <p>Para repartir la compra te sugerimos 40% tira de asado, 30% vacío, 15% matambre y 15% entraña. Podés cambiarlo por lo que más te guste o lo que haya en la carnicería.</p>
+
+  <h2>Carbón, pan y bebida</h2>
+  <p>Contá aproximadamente 1 kg de carbón por cada kg de carne. Para el pan, 1 por chorizo más 1 cada 2 personas. La bebida se calcula en 1,2 litros por adulto y 0,7 litros por chico, sumando agua, gaseosa y cerveza o vino.</p>
+
+  <div class="faq">
+    <h2>Preguntas frecuentes</h2>
+    <p><b>¿Cuánta carne hay que comprar por persona para un asado?</b>Alrededor de 500 g por adulto con hueso y 250 g por chico. Si hay muchos embutidos o achuras, podés bajar un poco.</p>
+    <p><b>¿Cuánto carbón necesito?</b>Más o menos 1 kg por cada kg de carne. Conviene tener una bolsa extra por si se alarga la sobremesa.</p>
+    <p><b>¿Cuántos chorizos por persona?</b>Uno por adulto y medio por chico alcanza para el choripán de entrada sin pasarse.</p>
+    <p><b>¿Esto sirve para cualquier corte?</b>Sí, los 500 g son con hueso, como la tira de asado. Si comprás cortes sin hueso como lomo o bife, con 350 a 400 g por adulto suele alcanzar.</p>
+  </div>
+
+  <footer>Los resultados son orientativos y dependen del apetito del grupo y de los cortes elegidos. Actualizado: octubre de 2026.</footer>
+</main>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var texto = "";
+
+  function f(n, d){
+    return n.toLocaleString("es-AR", {minimumFractionDigits:0, maximumFractionDigits:d === undefined ? 1 : d});
+  }
+  function num(id){
+    var v = parseInt($(id).value, 10);
+    return isNaN(v) || v < 0 ? 0 : Math.min(v, 500);
+  }
+
+  function calcular(){
+    var a = num("adultos"), n = num("ninos");
+    var ap = parseInt($("apetito").value, 10);
+    var emb = $("emb").checked, ach = $("ach").checked;
+    var precio = parseFloat($("precio").value) || 0;
+    var personas = a + n;
+
+    if(personas === 0){
+      $("big").textContent = "—";
+      $("sub").textContent = "";
+      $("lista").innerHTML = '<p class="empty">Cargá al menos una persona para ver la lista.</p>';
+      $("wsp").removeAttribute("href");
+      texto = "";
+      return;
+    }
+
+    var ga = ap - (emb ? 80 : 0) - (ach ? 50 : 0);
+    if(ga < 250) ga = 250;
+    var carne = (a * ga + n * ga * 0.5) / 1000;
+    var chori = emb ? Math.ceil(a + n / 2) : 0;
+    var morci = emb ? Math.ceil(a / 2) : 0;
+    var achKg = ach ? (a * 0.1 + n * 0.05) : 0;
+    var pan = Math.ceil(personas / 2 + chori);
+    var carbon = Math.ceil(carne);
+    var bebida = a * 1.2 + n * 0.7;
+    var ensalada = a * 0.2 + n * 0.1;
+
+    var cortes = [
+      ["Tira de asado", carne * 0.40],
+      ["Vacío", carne * 0.30],
+      ["Matambre", carne * 0.15],
+      ["Entraña", carne * 0.15]
+    ];
+
+    $("big").textContent = f(carne) + " kg";
+    $("sub").textContent = "de carne para " + personas + (personas === 1 ? " persona" : " personas") + " (" + a + " adultos y " + n + " chicos).";
+
+    var filas = [];
+    cortes.forEach(function(c){ filas.push([c[0], f(c[1]) + " kg", ""]); });
+    if(achKg) filas.push(["Achuras", f(achKg, 2) + " kg", ""]);
+    if(emb){
+      filas.push(["Chorizos", chori + " u.", ""]);
+      filas.push(["Morcillas", morci + " u.", ""]);
+    }
+    filas.push(["Pan", pan + " u.", "1 por chorizo + 1 cada 2 personas"]);
+    filas.push(["Carbón", carbon + " kg", "unas " + Math.ceil(carbon / 4) + " bolsas de 4 kg"]);
+    filas.push(["Bebida", f(bebida) + " litros", ""]);
+    filas.push(["Ensalada y guarniciones", f(ensalada) + " kg", ""]);
+
+    var html = '<table><thead><tr><th>Producto</th><th>Cantidad</th></tr></thead><tbody>';
+    filas.forEach(function(r){
+      html += "<tr><td>" + r[0] + (r[2] ? "<small>" + r[2] + "</small>" : "") + "</td><td>" + r[1] + "</td></tr>";
+    });
+    if(precio > 0){
+      var costo = carne * precio;
+      html += "<tr><td>Costo de la carne<small>" + f(carne) + " kg × $" + f(precio, 0) + "</small></td><td>$" + f(costo, 0) + "</td></tr>";
+      html += "<tr><td>Por persona</td><td>$" + f(costo / personas, 0) + "</td></tr>";
+    }
+    html += "</tbody></table>";
+    $("lista").innerHTML = html;
+
+    var t = "🔥 Asado para " + personas + " personas (" + a + " adultos y " + n + " chicos)\n\n";
+    t += "🥩 Carne: " + f(carne) + " kg\n";
+    cortes.forEach(function(c){ t += "   • " + c[0] + ": " + f(c[1]) + " kg\n"; });
+    if(achKg) t += "🍖 Achuras: " + f(achKg, 2) + " kg\n";
+    if(emb) t += "🌭 Chorizos: " + chori + " | Morcillas: " + morci + "\n";
+    t += "🍞 Pan: " + pan + "\n";
+    t += "🔥 Carbón: " + carbon + " kg\n";
+    t += "🥤 Bebida: " + f(bebida) + " litros\n";
+    t += "🥗 Ensalada: " + f(ensalada) + " kg\n";
+    if(precio > 0){
+      t += "\n💰 Carne: $" + f(carne * precio, 0) + " en total, $" + f(carne * precio / personas, 0) + " por persona\n";
+    }
+    t += "\nCalculá el tuyo acá: " + location.href.split("#")[0];
+    texto = t;
+    $("wsp").href = "https://wa.me/?text=" + encodeURIComponent(t);
+  }
+
+  document.querySelectorAll(".stepper button").forEach(function(b){
+    b.addEventListener("click", function(){
+      var el = $(b.getAttribute("data-t"));
+      var v = (parseInt(el.value, 10) || 0) + parseInt(b.getAttribute("data-d"), 10);
+      el.value = Math.max(0, Math.min(500, v));
+      calcular();
+    });
+  });
+  ["adultos","ninos","apetito","emb","ach","precio"].forEach(function(id){
+    $(id).addEventListener("input", calcular);
+    $(id).addEventListener("change", calcular);
+  });
+
+  $("copiar").addEventListener("click", function(){
+    if(!texto) return;
+    var btn = $("copiar");
+    function ok(){ btn.textContent = "¡Copiada!"; setTimeout(function(){ btn.textContent = "Copiar lista"; }, 1800); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(texto).then(ok, function(){});
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = texto; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); ok(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+
+  calcular();
+})();
+</script>
+</body>
+</html>
